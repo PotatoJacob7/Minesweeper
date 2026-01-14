@@ -1,0 +1,110 @@
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://44a83s66k62s"]
+
+[ext_resource type="Texture2D" uid="uid://5i6tge3xqb6x" path="res://Assets/Def_Dark.png" id="1_b0css"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a622r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htdca"]
+atlas = ExtResource("1_b0css")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o35im"]
+texture = SubResource("AtlasTexture_htdca")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esykf"]
+atlas = ExtResource("1_b0css")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1v3oa"]
+texture = SubResource("AtlasTexture_esykf")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydqrk"]
+atlas = ExtResource("1_b0css")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wmbj8"]
+texture = SubResource("AtlasTexture_ydqrk")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b0css"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o35im"]
+atlas = ExtResource("1_b0css")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_esykf"]
+texture = SubResource("AtlasTexture_o35im")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a622r"]
+atlas = ExtResource("1_b0css")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_htdca"]
+texture = SubResource("AtlasTexture_a622r")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v3oa"]
+atlas = ExtResource("1_b0css")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ydqrk"]
+texture = SubResource("AtlasTexture_1v3oa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6e3h"]
+atlas = ExtResource("1_b0css")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owe2a"]
+texture = SubResource("AtlasTexture_i6e3h")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0css"]
+atlas = ExtResource("1_b0css")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a622r"]
+texture = SubResource("AtlasTexture_b0css")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_a622r")
+Button/styles/hover = SubResource("StyleBoxTexture_o35im")
+Button/styles/normal = SubResource("StyleBoxTexture_1v3oa")
+Button/styles/pressed = SubResource("StyleBoxTexture_wmbj8")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_b0css")
+ItemList/styles/hovered = SubResource("StyleBoxTexture_esykf")
+ItemList/styles/hovered_selected = SubResource("StyleBoxTexture_esykf")
+ItemList/styles/hovered_selected_focus = SubResource("StyleBoxTexture_esykf")
+ItemList/styles/panel = SubResource("StyleBoxTexture_esykf")
+ItemList/styles/selected = SubResource("StyleBoxTexture_htdca")
+ItemList/styles/selected_focus = SubResource("StyleBoxTexture_htdca")
+Label/styles/normal = SubResource("StyleBoxTexture_ydqrk")
+LineEdit/colors/caret_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+LineEdit/font_sizes/font_size = 8
+LineEdit/styles/focus = SubResource("StyleBoxTexture_owe2a")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_owe2a")
+Panel/styles/panel = SubResource("StyleBoxTexture_a622r")

@@ -1,0 +1,103 @@
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://d28evtn87gjni"]
+
+[ext_resource type="Texture2D" uid="uid://dy16kd6qkc2y3" path="res://Assets/ILLIT.png" id="1_1q6wl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1q6wl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqus1"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ojnra"]
+texture = SubResource("AtlasTexture_dqus1")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwsru"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw56l"]
+texture = SubResource("AtlasTexture_vwsru")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqus1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojnra"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vwsru"]
+texture = SubResource("AtlasTexture_ojnra")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw56l"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7ycj"]
+texture = SubResource("AtlasTexture_iw56l")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7xe85"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqa23"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6wvmj"]
+texture = SubResource("AtlasTexture_pqa23")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j7ycj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xe85"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqa23"]
+texture = SubResource("AtlasTexture_7xe85")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gad8e"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ommhu"]
+texture = SubResource("AtlasTexture_gad8e")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_1q6wl")
+Button/styles/hover = SubResource("StyleBoxTexture_ojnra")
+Button/styles/normal = SubResource("StyleBoxTexture_ojnra")
+Button/styles/pressed = SubResource("StyleBoxTexture_iw56l")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_dqus1")
+ItemList/styles/hovered = SubResource("StyleBoxTexture_vwsru")
+ItemList/styles/hovered_selected = SubResource("StyleBoxTexture_vwsru")
+ItemList/styles/hovered_selected_focus = SubResource("StyleBoxTexture_vwsru")
+ItemList/styles/panel = SubResource("StyleBoxTexture_vwsru")
+ItemList/styles/selected = SubResource("StyleBoxTexture_j7ycj")
+ItemList/styles/selected_focus = SubResource("StyleBoxTexture_j7ycj")
+Label/styles/focus = SubResource("StyleBoxEmpty_7xe85")
+Label/styles/normal = SubResource("StyleBoxTexture_6wvmj")
+LineEdit/font_sizes/font_size = 8
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_j7ycj")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_pqa23")
+Panel/styles/panel = SubResource("StyleBoxTexture_ommhu")

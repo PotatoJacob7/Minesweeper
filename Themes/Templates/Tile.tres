@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://cw6hkpq7iytp4"]
+
+[ext_resource type="Texture2D" uid="uid://p3irifqawxlm" path="res://Assets/Def_Light.png" id="1_6buxx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6buxx"]
+atlas = ExtResource("1_6buxx")
+region = Rect2(0, 32, 16, 16)
+
+[resource]
+texture = SubResource("AtlasTexture_6buxx")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
