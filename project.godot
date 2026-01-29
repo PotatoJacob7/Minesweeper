@@ -8,26 +8,38 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="MinesweeperTest"
-run/main_scene="res://Scenes/MinewseeperTest.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://bhn1p2vbe3fkl"
+config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/image="uid://0akdwjswnpv7"
 config/icon="uid://0akdwjswnpv7"
+
+[autoload]
+
+WindowRatioLock="*res://Addons/godot-window-ratio-lock-main/window_ratio_lock.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/transparent=true
+window/size/sharp_corners=true
+window/size/window_width_override=1920
+window/size/window_height_override=1080
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-window/stretch/scale_mode="integer"
+window/per_pixel_transparency/allowed=true
 window/handheld/orientation=6
 
 [file_customization]
 
 folder_colors={
+"res://Addons/": "orange",
 "res://Assets/": "purple",
 "res://Scenes/": "red",
 "res://Scripts/": "yellow",
@@ -46,8 +58,16 @@ flag={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+"toggle move"={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+viewport/transparent_background=true

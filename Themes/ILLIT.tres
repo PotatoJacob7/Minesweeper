@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://d28evtn87gjni"]
+[gd_resource type="Theme" format=3 uid="uid://d28evtn87gjni"]
 
 [ext_resource type="Texture2D" uid="uid://dy16kd6qkc2y3" path="res://Assets/ILLIT.png" id="1_1q6wl"]
 
@@ -17,7 +17,7 @@ texture_margin_bottom = 3.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vwsru"]
 atlas = ExtResource("1_1q6wl")
-region = Rect2(16, 32, 16, 16)
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw56l"]
 texture = SubResource("AtlasTexture_vwsru")
@@ -54,7 +54,7 @@ texture_margin_bottom = 3.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqa23"]
 atlas = ExtResource("1_1q6wl")
-region = Rect2(48, 48, 16, 16)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6wvmj"]
 texture = SubResource("AtlasTexture_pqa23")
@@ -83,6 +83,30 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q6wl"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dqus1"]
+texture = SubResource("AtlasTexture_1q6wl")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ycj"]
+atlas = ExtResource("1_1q6wl")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7xe85"]
+texture = SubResource("AtlasTexture_j7ycj")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pqa23"]
+
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_1q6wl")
 Button/styles/hover = SubResource("StyleBoxTexture_ojnra")
@@ -95,9 +119,17 @@ ItemList/styles/hovered_selected_focus = SubResource("StyleBoxTexture_vwsru")
 ItemList/styles/panel = SubResource("StyleBoxTexture_vwsru")
 ItemList/styles/selected = SubResource("StyleBoxTexture_j7ycj")
 ItemList/styles/selected_focus = SubResource("StyleBoxTexture_j7ycj")
+Label/constants/line_spacing = 0
+Label/font_sizes/font_size = 8
 Label/styles/focus = SubResource("StyleBoxEmpty_7xe85")
 Label/styles/normal = SubResource("StyleBoxTexture_6wvmj")
+LineEdit/colors/caret_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 LineEdit/font_sizes/font_size = 8
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_j7ycj")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_pqa23")
 Panel/styles/panel = SubResource("StyleBoxTexture_ommhu")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_dqus1")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_dqus1")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_dqus1")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_7xe85")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_pqa23")

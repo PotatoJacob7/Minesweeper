@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://dgagmpejlxw7u"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://dgagmpejlxw7u"]
 
 [ext_resource type="Texture2D" uid="uid://cqy6n8yf24rh7" path="res://Assets/UT.png" id="1_3jmbh"]
+[ext_resource type="StyleBox" uid="uid://fs1kymrp7cs1" path="res://Themes/Templates/Empty.tres" id="2_fjojg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0mhc4"]
 
@@ -90,6 +91,28 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_enr80"]
+atlas = ExtResource("1_3jmbh")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wtfga"]
+texture = SubResource("AtlasTexture_enr80")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex451"]
+atlas = ExtResource("1_3jmbh")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntt4o"]
+texture = SubResource("AtlasTexture_ex451")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_0mhc4")
 Button/styles/hover = SubResource("StyleBoxTexture_8fnhd")
@@ -108,3 +131,8 @@ LineEdit/font_sizes/font_size = 8
 LineEdit/styles/focus = SubResource("StyleBoxTexture_enr80")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_enr80")
 Panel/styles/panel = SubResource("StyleBoxTexture_86pkc")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_wtfga")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_wtfga")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_wtfga")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_ntt4o")
+VScrollBar/styles/scroll_focus = ExtResource("2_fjojg")

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=23 format=3 uid="uid://d10kup78kwfxg"]
+[gd_resource type="Theme" load_steps=28 format=3 uid="uid://d10kup78kwfxg"]
 
 [ext_resource type="Texture2D" uid="uid://cscftv0j765cw" path="res://Assets/Min_Light.png" id="1_n82qv"]
 
@@ -98,6 +98,30 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv6fc"]
+atlas = ExtResource("1_n82qv")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5h873"]
+texture = SubResource("AtlasTexture_iv6fc")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ct4s"]
+atlas = ExtResource("1_n82qv")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkfpm"]
+texture = SubResource("AtlasTexture_4ct4s")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_on751"]
+
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_iv6fc")
 Button/styles/hover = SubResource("StyleBoxTexture_4ct4s")
@@ -116,3 +140,8 @@ LineEdit/font_sizes/font_size = 8
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_cpq45")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_x17ua")
 Panel/styles/panel = SubResource("StyleBoxTexture_1rqtd")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_5h873")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_5h873")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_5h873")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_jkfpm")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_on751")

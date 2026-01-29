@@ -1,26 +1,44 @@
 extends TileMapLayer
+class_name MineSweeper
 
-@onready var window: ColorRect = %Window
-@onready var game_settings: Button = %GameSettings
-@onready var os = OS.get_name()
+@onready var game_settings: GameSettings = %GameSettings
 
 @export var CellColumns := 30
 @export var CellRows := 16
 @export var MineAmount := 99
 var CurrCellColumns := CellColumns
 var CurrCellRows := CellRows
+var InitMineAmount := 99
 var FlagAmount := 0
 var GameEnded := false
 
 var theme := 0
 
+# -2 = flag
 # -1 = empty
 # 0 = mine
 # 1-8 = number
+enum CellType {FLAG = -3, UNOPENED, EMPTY, MINE, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT,}
+var CellTypeCoords := {
+					-3: Vector2i(5,1),
+					-2: Vector2i(0,2),
+					-1: Vector2i(0,1), 
+					0: Vector2i(5,4), 
+					1: Vector2i(1,1), 
+					2: Vector2i(2,1),
+					3: Vector2i(3,1), 
+					4: Vector2i(4,1), 
+					5: Vector2i(1,2), 
+					6: Vector2i(2,2), 
+					7: Vector2i(3,2), 
+					8: Vector2i(4,2),
+					}
+
 var cells : Array[int]
 var SurroundingCells : Array[int]
 var SurroundingCellsIndex : Array[int]
 var OffsetCoords : Vector2i
+var LastMove : Array[Vector2i]
 
 
 func _ready() -> void:
@@ -28,13 +46,14 @@ func _ready() -> void:
 
 # Sets board with empty grid
 func SetUpBoard() -> void:
-	var WindowWidth = window.size.x
-	var WindowHeight = window.size.y
+	var WindowWidth = get_window().size.x
+	var WindowHeight = get_window().size.y
 	CurrCellColumns = CellColumns
 	CurrCellRows = CellRows
 	GameEnded = false
 	cells = []
 	FlagAmount = 0
+	InitMineAmount = MineAmount
 	@warning_ignore("integer_division")
 	self.position.x = WindowWidth/2 - CurrCellColumns/2 * 16
 	@warning_ignore("integer_division")
@@ -42,7 +61,7 @@ func SetUpBoard() -> void:
 	self.clear()
 	for  y in range(CurrCellRows):
 		for x in range(CurrCellColumns):
-			set_cell(Vector2i(x,y), theme, Vector2i(0,2), 0)
+			set_cell(Vector2i(x,y), theme, CellTypeCoords[CellType.UNOPENED], 0)
 			cells.append(-1)
 
 func SetUpMines(avoid : Vector2i) -> void:
@@ -105,32 +124,46 @@ func swap(a: int, b: int):
 # Detect clicks on board cell
 func _input(event: InputEvent) -> void:
 	if not GameEnded:
-		if event.is_action_pressed("reveal") and os != "iOS":
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			game_settings.SetIcon(game_settings.IconType.CLICK)
+		else:
+			game_settings.SetIcon(game_settings.IconType.IDLE)
+		
+		if event.is_action_pressed("reveal"):
 			var CellAtMouse : Vector2i = local_to_map(get_local_mouse_position())
-			if GetAtlasCoords(CellAtMouse) != Vector2i(0,3) and GetAtlasCoords(CellAtMouse) != Vector2i(-1,-1):
+			LastMove = []
+			if GetAtlasCoords(CellAtMouse) != CellTypeCoords[CellType.FLAG] and GetAtlasCoords(CellAtMouse) != Vector2i(-1,-1):
 				if cells.has(0):
+					LastMove.append(CellAtMouse)
+					
+					if cells[GetCellIndex(CellAtMouse)] >= 1 and GetAtlasCoords(CellAtMouse) != CellTypeCoords[CellType.UNOPENED]:
+						RevealSurroundingCells(CellAtMouse, false)
+					
 					RevealCell(CellAtMouse)
-					if cells[GetCellIndex(CellAtMouse)] == 0:
-						GameEnded = true
-						RevealAllMines(CellAtMouse)
+					
+					for i in LastMove:
+						if cells[GetCellIndex(i)] == 0:
+							GameEnded = true
+							game_settings.SetIcon(game_settings.IconType.LOST)
+							RevealAllMines(LastMove)
 				else:  
 					SetUpMines(CellAtMouse)
 					RevealCell(CellAtMouse)
 					if cells[GetCellIndex(CellAtMouse)] == 0:
 						GameEnded = true
-						RevealAllMines(CellAtMouse)
+						RevealAllMines(LastMove)
 		
-		elif event.is_action_pressed("flag"):
+		if event.is_action_pressed("flag"):
 			var CellAtMouse : Vector2i = local_to_map(get_local_mouse_position())
 			#Swap unrevealed states
-			if GetAtlasCoords(CellAtMouse) == Vector2i(0,2):
-				set_cell(CellAtMouse, theme, Vector2i(0,3), 0)
-				FlagAmount += 1
-				game_settings.SetMineCount(MineAmount, FlagAmount)
-			elif GetAtlasCoords(CellAtMouse) == Vector2i(0,3):
-				set_cell(CellAtMouse, theme, Vector2i(0,2), 0)
-				FlagAmount -= 1
-				game_settings.SetMineCount(MineAmount, FlagAmount)
+			if GetAtlasCoords(CellAtMouse) == CellTypeCoords[CellType.UNOPENED]:
+				set_cell(CellAtMouse, theme, CellTypeCoords[CellType.FLAG], 0)
+			elif GetAtlasCoords(CellAtMouse) == CellTypeCoords[CellType.FLAG]:
+				set_cell(CellAtMouse, theme, CellTypeCoords[CellType.UNOPENED], 0)
+		
+		
+		SetFlaggedCells()
+		game_settings.SetMineCount(MineAmount, FlagAmount)
 
 # Compute clicked cell
 func RevealCell(CellCoords : Vector2i) -> void:
@@ -138,21 +171,21 @@ func RevealCell(CellCoords : Vector2i) -> void:
 	
 	var AtlasCoords : Vector2i
 	match cells[CellIndex]:
-		-1: AtlasCoords = Vector2i(1,2)
-		0: AtlasCoords = Vector2i(3,2)
-		1: AtlasCoords = Vector2i(0,0)
-		2: AtlasCoords = Vector2i(1,0)
-		3: AtlasCoords = Vector2i(2,0)
-		4: AtlasCoords = Vector2i(3,0)
-		5: AtlasCoords = Vector2i(0,1)
-		6: AtlasCoords = Vector2i(1,1)
-		7: AtlasCoords = Vector2i(2,1)
-		8: AtlasCoords = Vector2i(3,1)
+		-1: AtlasCoords = CellTypeCoords[CellType.EMPTY]
+		0: AtlasCoords = CellTypeCoords[CellType.MINE]
+		1: AtlasCoords = CellTypeCoords[CellType.ONE]
+		2: AtlasCoords = CellTypeCoords[CellType.TWO]
+		3: AtlasCoords = CellTypeCoords[CellType.THREE]
+		4: AtlasCoords = CellTypeCoords[CellType.FOUR]
+		5: AtlasCoords = CellTypeCoords[CellType.FIVE]
+		6: AtlasCoords = CellTypeCoords[CellType.SIX]
+		7: AtlasCoords = CellTypeCoords[CellType.SEVEN]
+		8: AtlasCoords = CellTypeCoords[CellType.EIGHT]
 	
 	set_cell(CellCoords, theme, AtlasCoords, 0)
 	
 	if cells[CellIndex] == -1:
-		RevealSurroundingCells(CellCoords)
+		RevealSurroundingCells(CellCoords, false)
 
 # Converts CellCoords to index in Array
 func GetCellIndex(CellCoords : Vector2i) -> int:
@@ -183,27 +216,53 @@ func GetCellSurroundingIndex(CellCoords : Vector2i) -> Array[int]:
 			SurroundingCellsIndex.append(GetCellIndex(OffsetCoords))
 	return SurroundingCellsIndex
 
-func RevealSurroundingCells(CellCoords : Vector2i) -> void:
+func RevealSurroundingCells(CellCoords : Vector2i, CanReveal : bool) -> void:
+	var NumFlags := 0
 	for y in range(-1,2):
 		for x in range(-1,2):
 			OffsetCoords = CellCoords + Vector2i(x,y)
 			if GetCellIndex(OffsetCoords) > -1:
-				#If Cell is empty or a flag or isnt revealed
-				if GetAtlasCoords(OffsetCoords) == Vector2i(0,2) or GetAtlasCoords(OffsetCoords) == Vector2i(0,3):
-					RevealCell(OffsetCoords)
+				#Number Cell
+				if cells[GetCellIndex(CellCoords)] >= 1:
+					#Flagged cells
+					if GetAtlasCoords(OffsetCoords) == CellTypeCoords[CellType.FLAG]:
+						if not CanReveal:
+							NumFlags += 1
+					else:
+						if CanReveal:
+							if GetAtlasCoords(OffsetCoords) == CellTypeCoords[CellType.UNOPENED]:
+								LastMove.append(OffsetCoords)
+								RevealCell(OffsetCoords)
+				else:
+					#If Cell is empty or a flag or isnt revealed
+					if GetAtlasCoords(OffsetCoords) == CellTypeCoords[CellType.UNOPENED] or GetAtlasCoords(OffsetCoords) == CellTypeCoords[CellType.FLAG]:
+						RevealCell(OffsetCoords)
+	if cells[GetCellIndex(CellCoords)] >= 1:
+		#Number Cell
+		if NumFlags == cells[GetCellIndex(CellCoords)]:
+			RevealSurroundingCells(CellCoords, true)
 
-func RevealAllMines(avoid : Vector2i) -> void:
+func RevealAllMines(avoid : Array[Vector2i]) -> void:
 	var CellCoords : Vector2i
 	for  y in range(CurrCellRows):
 		for x in range(CurrCellColumns):
 			CellCoords = Vector2i(x,y)
-			if cells[GetCellIndex(CellCoords)] == 0 and CellCoords != avoid and GetAtlasCoords(CellCoords) != Vector2i(0,3):
-				set_cell(CellCoords, theme, Vector2i(2,2), 0)
+			if cells[GetCellIndex(CellCoords)] == 0:
+				if GetAtlasCoords(CellCoords) == CellTypeCoords[CellType.FLAG]:
+					set_cell(CellCoords, theme, CellTypeCoords[CellType.FLAG], 0)
+				elif not avoid.has(CellCoords):
+					set_cell(CellCoords, theme, Vector2i(5,3), 0)#unclicked mine
 			else:
-				if GetAtlasCoords(CellCoords) == Vector2i(0,3) and cells[GetCellIndex(CellCoords)] != 0:
-					set_cell(CellCoords, theme, Vector2i(1,3), 0)
-				elif CellCoords == avoid:
-					set_cell(CellCoords, theme, Vector2i(3,2), 0)
+				if get_cell_atlas_coords(CellCoords) == CellTypeCoords[CellType.FLAG]:
+					set_cell(CellCoords, theme, Vector2i(5,2), 0)#wrong flag
+
+func SetFlaggedCells():
+	FlagAmount = 0
+	for  y in range(CurrCellRows):
+		for x in range(CurrCellColumns):
+			var CellCoords = Vector2i(x,y)
+			if GetAtlasCoords(CellCoords) == CellTypeCoords[CellType.FLAG]:
+				FlagAmount += 1
 
 func GetAtlasCoords(CellCoords : Vector2i) -> Vector2i:
 	return get_cell_atlas_coords(CellCoords)

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://df3aamge4u2n0"]
+[gd_resource type="Theme" format=3 uid="uid://df3aamge4u2n0"]
 
 [ext_resource type="Texture2D" uid="uid://y2f36cvcxwcs" path="res://Assets/Min_Dark.png" id="1_ueq2y"]
 [ext_resource type="Texture2D" uid="uid://5i6tge3xqb6x" path="res://Assets/Def_Dark.png" id="2_ffibf"]
@@ -84,6 +84,30 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffibf"]
+atlas = ExtResource("1_ueq2y")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0gjnt"]
+texture = SubResource("AtlasTexture_ffibf")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0eh3"]
+atlas = ExtResource("1_ueq2y")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wmg8x"]
+texture = SubResource("AtlasTexture_g0eh3")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6so57"]
+
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_ffibf")
 Button/styles/hover = SubResource("StyleBoxTexture_j4xet")
@@ -98,7 +122,13 @@ ItemList/styles/selected = SubResource("StyleBoxTexture_g0eh3")
 ItemList/styles/selected_focus = SubResource("StyleBoxTexture_g0eh3")
 Label/styles/focus = SubResource("StyleBoxEmpty_g0eh3")
 Label/styles/normal = SubResource("StyleBoxTexture_6so57")
+LineEdit/colors/caret_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 LineEdit/font_sizes/font_size = 8
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_wmg8x")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_v4rak")
 Panel/styles/panel = SubResource("StyleBoxTexture_wxdxl")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_0gjnt")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_0gjnt")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_0gjnt")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_wmg8x")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_6so57")

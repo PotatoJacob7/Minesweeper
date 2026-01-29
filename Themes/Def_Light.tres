@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://dvnaj6le4cn1i"]
+[gd_resource type="Theme" format=3 uid="uid://dvnaj6le4cn1i"]
 
 [ext_resource type="Texture2D" uid="uid://p3irifqawxlm" path="res://Assets/Def_Light.png" id="1_0ln30"]
 [ext_resource type="StyleBox" uid="uid://bxkbhqy6ve7nd" path="res://Themes/Templates/Icon.tres" id="3_4heer"]
@@ -32,7 +32,7 @@ load_path = "res://.godot/imported/Def_Light.png-9f17bdfc8e568b8e6e90f5bc55bd3ac
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4heer"]
 atlas = SubResource("CompressedTexture2D_ar2iq")
-region = Rect2(16, 32, 16, 16)
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ui44p"]
 texture = SubResource("AtlasTexture_4heer")
@@ -94,6 +94,36 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xw2bu"]
+load_path = "res://.godot/imported/Def_Light.png-9f17bdfc8e568b8e6e90f5bc55bd3ac0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4v3q"]
+atlas = SubResource("CompressedTexture2D_xw2bu")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dyutc"]
+texture = SubResource("AtlasTexture_e4v3q")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y8kyb"]
+load_path = "res://.godot/imported/Def_Light.png-9f17bdfc8e568b8e6e90f5bc55bd3ac0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy4xn"]
+atlas = SubResource("CompressedTexture2D_y8kyb")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oebtw"]
+texture = SubResource("AtlasTexture_vy4xn")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oxgnp"]
+
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_wcw1y")
 Button/styles/hover = SubResource("StyleBoxTexture_ybyu1")
@@ -114,3 +144,8 @@ LineEdit/font_sizes/font_size = 8
 LineEdit/styles/focus = SubResource("StyleBoxTexture_xw2bu")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_4heer")
 Panel/styles/panel = SubResource("StyleBoxTexture_362bh")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_dyutc")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_dyutc")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_dyutc")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_oebtw")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_oxgnp")
